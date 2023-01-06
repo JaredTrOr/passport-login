@@ -16,5 +16,11 @@ router.get('/register', getRegisterPage);
 //POST METHODS
 router.post('/register', registerUser);
 
+//Login passport authentication
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+}));
 
 module.exports = router;
