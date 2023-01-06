@@ -4,12 +4,12 @@ require('./connection'); //Database connection
 const express = require('express');
 const app = express();
 const port = process.env.PORT;
-const router = require('./routes/routes');
+const userRouter = require('./routes/user');
 
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended: false}));
-app.use('/', router);
+app.use('/', userRouter);
 
 
 app.listen(port, () => {
