@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const passport = require('passport');
+
 const {
     getIndexPage,
     getLoginPage,
@@ -7,7 +9,7 @@ const {
 } = require('../controllers/userControllers');
 
 //GET METHODS
-router.get('/', getIndexPage);
+router.get('/',getIndexPage);
 router.get('/login', getLoginPage);
 router.get('/register', getRegisterPage);
 

@@ -1,7 +1,5 @@
 const {User} = require('../connection');
 const bcrypt = require('bcrypt');
-const initializePassport = require('../config/passport-config');
-const passport = require('passport');
 
 //GET METHODS
 const getIndexPage = (req,res) => res.render('index.ejs');
