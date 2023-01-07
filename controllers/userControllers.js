@@ -2,9 +2,18 @@ const {User} = require('../connection');
 const bcrypt = require('bcrypt');
 
 //GET METHODS
-const getIndexPage = (req,res) => res.render('index.ejs');
-const getLoginPage = (req,res) => res.render('login.ejs');
-const getRegisterPage = (req,res) => res.render('register.ejs');
+const getIndexPage = (req,res) => {
+    res.render('index.ejs');
+};
+const getLoginPage = (req,res) => {
+    res.render('login.ejs');
+}
+const getRegisterPage = (req,res) => {
+    res.render('register.ejs');
+}
+const getProtectedPage = (req,res) => {
+    res.render('protected.ejs', {name: req.user.name});
+}
 
 //POST METHODS
 const registerUser = async (req,res) => {
@@ -27,5 +36,6 @@ module.exports = {
     getIndexPage,
     getLoginPage,
     getRegisterPage,
+    getProtectedPage,
     registerUser
 }

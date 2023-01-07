@@ -5,6 +5,7 @@ const {
     getIndexPage,
     getLoginPage,
     getRegisterPage,
+    getProtectedPage,
     registerUser
 } = require('../controllers/userControllers');
 
@@ -12,13 +13,14 @@ const {
 router.get('/',getIndexPage);
 router.get('/login', getLoginPage);
 router.get('/register', getRegisterPage);
+router.get('/protected', getProtectedPage)
 
 //POST METHODS
 router.post('/register', registerUser);
 
 //Login passport authentication
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/protected',
     failureRedirect: '/login',
     failureFlash: true
 }));

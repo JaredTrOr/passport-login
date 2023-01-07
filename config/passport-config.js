@@ -31,11 +31,17 @@ function initialize (passport){
     passport.use(new LocalStrategy({usernameField: 'email'}, authenticateUser));
 
     passport.serializeUser((user, done) => {
-
+        done(null, user.id);
     });
 
     passport.deserializeUser((id, done) => {
-
+        User.findByPk(id)
+        .then(user => {
+            done(null, user);
+        })
+        .catch(err => {
+            done(err);
+        })
     });
 }
 
