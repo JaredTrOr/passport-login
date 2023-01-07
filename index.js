@@ -9,6 +9,7 @@ const passport = require('passport'); //Passport package
 const initializePassport = require('./config/passport-config'); //Initialize function
 const flash = require('express-flash');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 initializePassport(passport); //Passport initialization
 
@@ -23,6 +24,7 @@ app.use(session({
 //Passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 app.use('/', userRouter);
 
 app.listen(port, () => {
