@@ -8,7 +8,7 @@ const {
     getRegisterPage,
     getProtectedPage,
     registerUser,
-    logOut
+    loggingOut
 } = require('../controllers/userControllers');
 
 //Middlewares
@@ -31,6 +31,6 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 //DELETE METHODS
-router.delete('/logout', logOut);
+router.delete('/logout', loggingOut);
 
 module.exports = router;

@@ -33,9 +33,11 @@ const registerUser = async (req,res) => {
 };
 
 //DELETE METHODS
-const logOut = (req,res) => {
-    req.logOut();
-    res.redirect('/login');
+const loggingOut = (req,res, next) => {
+    req.logOut((err) => {
+        if(err) return next(err);
+        res.redirect('/login');
+    });
 }
 
 module.exports = {
@@ -44,5 +46,5 @@ module.exports = {
     getRegisterPage,
     getProtectedPage,
     registerUser,
-    logOut
+    loggingOut
 }
