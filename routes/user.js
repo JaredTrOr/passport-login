@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 
+//Controllers
 const {
     getIndexPage,
     getLoginPage,
@@ -9,11 +10,14 @@ const {
     registerUser
 } = require('../controllers/userControllers');
 
+//Middlewares
+const isAuth = require('../middlewares/auth');
+
 //GET METHODS
 router.get('/',getIndexPage);
 router.get('/login', getLoginPage);
 router.get('/register', getRegisterPage);
-router.get('/protected', getProtectedPage)
+router.get('/protected', isAuth, getProtectedPage)
 
 //POST METHODS
 router.post('/register', registerUser);
