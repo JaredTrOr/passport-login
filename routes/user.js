@@ -7,17 +7,18 @@ const {
     getLoginPage,
     getRegisterPage,
     getProtectedPage,
-    registerUser
+    registerUser,
+    logOut
 } = require('../controllers/userControllers');
 
 //Middlewares
-const isAuth = require('../middlewares/auth');
+const {isAuth, isNotAuth }= require('../middlewares/auth');
 
 //GET METHODS
-router.get('/',getIndexPage);
-router.get('/login', getLoginPage);
-router.get('/register', getRegisterPage);
-router.get('/protected', isAuth, getProtectedPage)
+router.get('/',isNotAuth,getIndexPage);
+router.get('/login',isNotAuth, getLoginPage);
+router.get('/register',isNotAuth, getRegisterPage);
+router.get('/protected',isAuth, getProtectedPage)
 
 //POST METHODS
 router.post('/register', registerUser);
@@ -28,5 +29,8 @@ router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 }));
+
+//DELETE METHODS
+router.delete('/logout', logOut);
 
 module.exports = router;

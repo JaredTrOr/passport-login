@@ -32,10 +32,17 @@ const registerUser = async (req,res) => {
     }
 };
 
+//DELETE METHODS
+const logOut = (req,res) => {
+    req.logOut();
+    res.redirect('/login');
+}
+
 module.exports = {
     getIndexPage,
     getLoginPage,
     getRegisterPage,
     getProtectedPage,
-    registerUser
+    registerUser,
+    logOut
 }
